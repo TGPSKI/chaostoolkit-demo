@@ -1,0 +1,12 @@
+notifications:
+ -
+  type: http
+  url: https://mystuff.com/api
+  verify_tls: false
+  headers:
+    Authorization: "Bearer 1234"
+ -
+  type: plugin
+  module: chaosslack.notification
+  token: xop-1235
+  channel: general

@@ -1,0 +1,92 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kill-pods-with-label
+  namespace: chaostoolkit-run
+data:
+  experiment.json: |-
+    {
+        "version": "1.0.0",
+        "title": "kill-pods-with-label",
+        "description": "Can my application maintain itself under the conditions of pod death?",
+        "tags": [
+            "platform:kubernetes",
+            "service:pod"
+        ],
+        "configuration": {
+            "service_url": {
+                "type": "env",
+                "key": "SERVICE_URL"
+            },
+            "label_selector": {
+                "type": "env",
+                "key": "LABEL_SELECTOR"
+            },
+            "namespace": {
+                "type": "env",
+                "key": "NAMESPACE"
+            }
+        },
+        "contributions": {
+            "availability": "high",
+            "reliability": "high",
+            "safety": "none",
+            "security": "none",
+            "performability": "none"
+        },
+        "steady-state-hypothesis": {
+            "title": "Application is normal",
+            "probes": [
+                {
+                    "type": "probe",
+                    "name": "application-must-respond-normally",
+                    "tolerance": 200,
+                    "provider": {
+                        "type": "http",
+                        "url": "${service_url}",
+                        "timeout": 5
+                    }
+                }
+            ]
+        },
+        "method": [
+            {
+                "type": "action",
+                "name": "terminate-pods",
+                "provider": {
+                    "module": "chaosk8s.pod.actions",
+                    "type": "python",
+                    "func": "terminate_pods",
+                    "arguments": {
+                        "label_selector": "${label_selector}",
+                        "ns": "${namespace}"
+                    }
+                },
+                "pauses": {
+                    "after": 15
+                    }
+            }
+        ]
+    }
+---
+apiVersion: chaostoolkit.org/v1
+kind: ChaosToolkitExperiment
+metadata:
+  name: kill-pods-with-label
+  namespace: chaostoolkit-crd
+spec:
+  namespace: chaostoolkit-run
+  pod:
+    image: tgpski/chaostoolkit:latest
+    env:
+    - name: SERVICE_URL
+      value: "socks.atomic.lab"
+    - name: LABEL_SELECTOR
+      value: "name=front-end"
+    - name: NAMESPACE
+      value: "sock-shop"
+    experiment:
+      configMapName: kill-pods-with-label
+  clusterRoleBindNamespaces:
+  - sock-shop

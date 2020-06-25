@@ -1,0 +1,57 @@
+[2020-06-25 01:46:43 DEBUG] [cli:71] ###############################################################################
+[2020-06-25 01:46:43 DEBUG] [cli:72] Running command 'run'
+[2020-06-25 01:46:43 DEBUG] [cli:76] Using settings file '/home/svc/.chaostoolkit/settings.yaml'
+[2020-06-25 01:46:44 DEBUG] [settings:24] The Chaos Toolkit settings file could not be found at '/home/svc/.chaostoolkit/settings.yaml'.
+[2020-06-25 01:46:44 DEBUG] [__init__:355] No controls to apply on 'loader'
+[2020-06-25 01:46:44 DEBUG] [__init__:355] No controls to apply on 'loader'
+[2020-06-25 01:46:44 DEBUG] [caching:25] Building activity cache...
+[2020-06-25 01:46:44 DEBUG] [caching:35] Cached 2 activities
+[2020-06-25 01:46:44 INFO] [experiment:54] Validating the experiment's syntax
+[2020-06-25 01:46:44 DEBUG] [configuration:47] Loading configuration...
+[2020-06-25 01:46:44 DEBUG] [secret:74] Loading secrets...
+[2020-06-25 01:46:44 DEBUG] [secret:89] Secrets loaded
+[2020-06-25 01:47:05 INFO] [experiment:103] Experiment looks valid
+[2020-06-25 01:47:05 DEBUG] [caching:42] Clearing activities cache
+[2020-06-25 01:47:05 DEBUG] [caching:25] Building activity cache...
+[2020-06-25 01:47:05 DEBUG] [caching:35] Cached 2 activities
+[2020-06-25 01:47:05 DEBUG] [configuration:47] Loading configuration...
+[2020-06-25 01:47:05 DEBUG] [secret:74] Loading secrets...
+[2020-06-25 01:47:05 DEBUG] [secret:89] Secrets loaded
+[2020-06-25 01:47:05 DEBUG] [__init__:39] Initializing controls
+[2020-06-25 01:47:05 INFO] [experiment:195] Running experiment: kill-pods-with-label
+[2020-06-25 01:47:05 DEBUG] [__init__:355] No controls to apply on 'experiment'
+[2020-06-25 01:47:05 INFO] [hypothesis:184] Steady state hypothesis: Application is normal
+[2020-06-25 01:47:05 DEBUG] [__init__:355] No controls to apply on 'hypothesis'
+[2020-06-25 01:47:05 DEBUG] [__init__:355] No controls to apply on 'activity'
+[2020-06-25 01:47:05 INFO] [activity:161] Probe: application-must-respond-normally
+[2020-06-25 01:47:05 DEBUG] [activity:179]   => succeeded with '{'headers': {'content-type': 'text/html; charset=UTF-8', 'cache-control': 'public, max-age=0', 'accept-ranges': 'bytes', 'date': 'Thu, 25 Jun 2020 01:47:05 GMT', 'last-modified': 'Tue, 21 Mar 2017 11:31:47 GMT', 'content-length': '8688', 'x-powered-by': 'Express', 'etag': 'W/"21f0-15af0a320b8"'}, 'body': '...', 'status': 200}'
+[2020-06-25 01:47:05 DEBUG] [__init__:355] No controls to apply on 'activity'
+[2020-06-25 01:47:05 DEBUG] [hypothesis:212] allowed tolerance is 200
+[2020-06-25 01:47:05 INFO] [hypothesis:222] Steady state hypothesis is met!
+[2020-06-25 01:47:05 DEBUG] [__init__:355] No controls to apply on 'hypothesis'
+[2020-06-25 01:47:05 DEBUG] [__init__:355] No controls to apply on 'method'
+[2020-06-25 01:47:05 DEBUG] [__init__:355] No controls to apply on 'activity'
+[2020-06-25 01:47:05 INFO] [activity:161] Action: terminate-pods
+[2020-06-25 01:47:05 DEBUG] [python:36] Activity 'terminate-pods' loaded from '/usr/local/lib/python3.5/site-packages/chaosk8s/pod/actions.py'
+[2020-06-25 01:47:06 DEBUG] [actions:194] Found 1 pods labelled 'name=front-end' in ns sock-shop
+[2020-06-25 01:47:06 DEBUG] [activity:181]   => succeeded without any result value
+[2020-06-25 01:47:06 INFO] [activity:198] Pausing after activity for 15s...
+[2020-06-25 01:47:21 DEBUG] [__init__:355] No controls to apply on 'activity'
+[2020-06-25 01:47:21 DEBUG] [__init__:355] No controls to apply on 'method'
+[2020-06-25 01:47:21 INFO] [hypothesis:184] Steady state hypothesis: Application is normal
+[2020-06-25 01:47:21 DEBUG] [__init__:355] No controls to apply on 'hypothesis'
+[2020-06-25 01:47:21 DEBUG] [__init__:355] No controls to apply on 'activity'
+[2020-06-25 01:47:21 INFO] [activity:161] Probe: application-must-respond-normally
+[2020-06-25 01:47:22 DEBUG] [activity:179]   => succeeded with '{'headers': {'content-type': 'text/html; charset=UTF-8', 'cache-control': 'public, max-age=0', 'accept-ranges': 'bytes', 'date': 'Thu, 25 Jun 2020 01:47:22 GMT', 'last-modified': 'Tue, 21 Mar 2017 11:31:47 GMT', 'content-length': '8688', 'x-powered-by': 'Express', 'etag': 'W/"21f0-15af0a320b8"'}, 'body': '...', 'status': 200}'
+[2020-06-25 01:47:22 DEBUG] [__init__:355] No controls to apply on 'activity'
+[2020-06-25 01:47:22 DEBUG] [hypothesis:212] allowed tolerance is 200
+[2020-06-25 01:47:22 INFO] [hypothesis:222] Steady state hypothesis is met!
+[2020-06-25 01:47:22 DEBUG] [__init__:355] No controls to apply on 'hypothesis'
+[2020-06-25 01:47:22 INFO] [experiment:326] Let's rollback...
+[2020-06-25 01:47:22 DEBUG] [__init__:355] No controls to apply on 'rollback'
+[2020-06-25 01:47:22 INFO] [rollback:25] No declared rollbacks, let's move on.
+[2020-06-25 01:47:22 DEBUG] [__init__:355] No controls to apply on 'rollback'
+[2020-06-25 01:47:22 INFO] [experiment:276] Experiment ended with status: completed
+[2020-06-25 01:47:22 DEBUG] [__init__:355] No controls to apply on 'experiment'
+[2020-06-25 01:47:22 DEBUG] [__init__:72] Cleaning up controls
+[2020-06-25 01:47:22 DEBUG] [caching:42] Clearing activities cache

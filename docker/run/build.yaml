@@ -1,0 +1,13 @@
+---
+- name: build, tag, push, and deploy from web/dist
+  hosts:
+    - localhost
+  tasks:
+    - name: build docker image
+      docker_image:
+        build:
+          path: "."
+        name: tgpski/chaostoolkit-kubernetes-run
+        tag: "latest"
+        push: true
+        source: build

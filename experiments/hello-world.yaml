@@ -1,0 +1,73 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-world
+  namespace: chaostoolkit-run
+data:
+  experiment.json: |
+    {
+        "version": "1.0.0",
+        "title": "Look token in file",
+        "description": "We find the expected token in the file",
+        "tags": ["dummy"],
+        "contributions":
+        {
+            "availability": "high",
+            "love": "high",
+            "something": "low",
+            "otherthing": "none",
+            "security": "medium",
+            "performance": "none"
+        },
+        "steady - state - hypothesis":
+        {
+            "title": "Our hypothesis is the token is part of the file",
+            "probes": [
+            {
+                "type": "probe",
+                "name": "grep-file",
+                "tolerance": 0,
+                "provider":
+                {
+                    "type": "process",
+                    "path": "grep",
+                    "arguments": "burp test.txt"
+                }
+            }]
+        },
+        "method": [
+        {
+            "type": "action",
+            "name": "remove-token",
+            "provider":
+            {
+                "type": "process",
+                "path": "sed",
+                "arguments": "-i s/blah/blah/ test.txt"
+            }
+        }],
+        "rollbacks": [
+        {
+            "type": "action",
+            "name": "remove-token",
+            "provider":
+            {
+                "type": "process",
+                "path": "sed",
+                "arguments": "-i s/blah/burp/ test.txt"
+            }
+        }]
+    }
+---
+apiVersion: chaostoolkit.org/v1
+kind: ChaosToolkitExperiment
+metadata:
+  name: hello-world
+  namespace: chaostoolkit-crd
+spec:
+  namespace: chaostoolkit-run
+  pod:
+    image: tgpski/chaostoolkit:latest
+    experiment:
+      configMapName: hello-world
