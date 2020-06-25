@@ -10,6 +10,10 @@ This does not represent a complete out of the box demo. The end user will need t
 * Experiments
 * Logging
 
+# Running an experiment
+
+See the step-by-step breakdown and flow diagram [here](docs/running-an-experiment.md).
+
 ## Docker
 
 ### crd
